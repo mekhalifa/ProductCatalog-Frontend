@@ -13,7 +13,6 @@ import { ViewProductComponent } from './components/product/view-product/view-pro
 import { DeleteModelComponent } from './components/product/delete-model/delete-model.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadComponent } from './components/shared/upload/upload.component';
-import { ListGridProductComponent } from './components/product/list-grid-product/list-grid-product.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { NotFoundComponent } from './components/shared/not-found/not-found.compo
     ViewProductComponent,
     DeleteModelComponent,
     UploadComponent,
-    ListGridProductComponent,
     NotFoundComponent
   ],
   imports: [
