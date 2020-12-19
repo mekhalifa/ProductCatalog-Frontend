@@ -1,0 +1,41 @@
+
+<br>
+<h3 class="text-center">Products</h3>
+<div>
+
+</div>
+<br>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Last Update</th>
+      <th scope="col" class="text-center ">
+        <form [formGroup]="searchForm" class="form-inline my-2 my-lg-0 mr-5 float-right " (ngSubmit)="onSubmit(searchForm)">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" formControlName="searchKey">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="productList!=null && productList.length==0"><td> No Product Found</td></tr>
+    <tr *ngFor="let item  of productList">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.name}}</td>
+      <td>{{item.price |currency}}</td>
+      <td><img [src]="createImgPath(item.photo)" alt="profile picture" style="width:60px; height:60px;"></td>
+      <td>{{item.lastUpdated|date}}</td>
+      <td class="text-center">
+        <a [routerLink]="['/products/view/',item.id]" class="btn btn-info btn-sm" >View</a>  |
+        <a [routerLink]="['/products/edit/',item.id]" class="btn btn-primary btn-sm" >Edit</a>  |
+        <a  class="btn btn-danger btn-sm" (click)="deleteProduct(item.id,item.name)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

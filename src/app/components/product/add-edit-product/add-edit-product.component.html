@@ -1,0 +1,47 @@
+<br>
+<h3 class="text-center" *ngIf="isAddMode">Add Product</h3>
+<h3 class="text-center" *ngIf="!isAddMode">Edit Product</h3>
+
+
+<form [formGroup]="addEditForm" (ngSubmit)="onSubmit(addEditForm)" enctype="multipart/form-data">
+
+  <div class="mb-3" *ngIf="!isAddMode">
+    <label for="Input0" class="form-label">Id</label>
+    <input type="hidden" class="form-control" id="Input0" formControlName="id"  />
+
+  </div>
+
+  <div class="mb-3">
+    <label for="Input1" class="form-label">Name</label>
+    <input type="text" class="form-control" id="Input1" formControlName="name" />
+
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <div *ngIf="name.errors.required">Name is required.</div>
+    </div>
+
+  </div>
+  <div class="mb-3">
+    <label for="Input2" class="form-label">Price</label>
+    <input type="number" class="form-control" id="Input2" formControlName="price" />
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+      <div *ngIf="price.errors.required">Price is required.</div>
+    </div>
+  </div>
+  <div class="mb-3">
+
+    <label for="Input3" class="form-label">Photo</label>
+    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+
+  </div>
+
+
+  <button type="submit" [disabled]="!addEditForm.valid" class="btn btn-success">
+    <span class="text-center" *ngIf="isAddMode">Add Product</span>
+    <span class="text-center" *ngIf="!isAddMode">Edit Product</span>
+  </button>
+  <a [routerLink]="['/products/list']" class="btn btn-link text-black-50">Back To Products List</a>
+
+</form>
+
+
+
